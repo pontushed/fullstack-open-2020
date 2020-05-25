@@ -44,7 +44,7 @@ const ShowCountry = ({ country }) => {
 const CountryList = ({ countries, countryFilter, handleSelect }) => {
   const handleClick = (event) => {
     const country = filteredCountries
-      .filter((c) => c.alpha3Code === event.target.id)[0]
+      .find((c) => c.alpha3Code === event.target.id)
       .name.toLowerCase()
     handleSelect(country)
   }
