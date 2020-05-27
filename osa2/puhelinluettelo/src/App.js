@@ -40,37 +40,59 @@ const App = () => {
       ) {
         const personObject = persons.find((p) => p.name === newName)
         personObject.number = newNumber
-        personService.update(personObject).then(() => {
-          setNewName('')
-          setNewNumber('')
-        })
+        personService
+          .update(personObject)
+          .then(() => {
+            setNewName('')
+            setNewNumber('')
+          })
+          .catch((error) => {
+            setMessage({
+              text: error.response.data,
+              type: 'error',
+            })
+            setTimeout(() => {
+              setMessage({ text: null, type: 'error' })
+            }, 5000)
+          })
       }
     } else {
       const personObject = {
         name: newName,
         number: newNumber,
       }
-      personService.addNew(personObject).then((newPerson) => {
-        setPersons(persons.concat(newPerson))
-        setNewName('')
-        setNewNumber('')
-        setMessage({ text: `Added ${newName}`, type: 'success' })
-        setTimeout(() => {
-          setMessage({ text: null, type: 'success' })
-        }, 5000)
-      })
+      personService
+        .addNew(personObject)
+        .then((newPerson) => {
+          setPersons(persons.concat(newPerson))
+          setNewName('')
+          setNewNumber('')
+          setMessage({ text: `Added ${newName}`, type: 'success' })
+          setTimeout(() => {
+            setMessage({ text: null, type: 'success' })
+          }, 5000)
+        })
+        .catch((error) => {
+          setMessage({
+            text: error.response.data,
+            type: 'error',
+          })
+          setTimeout(() => {
+            setMessage({ text: null, type: 'error' })
+          }, 5000)
+        })
     }
   }
 
   const handleDelete = (id) => {
-    const person = persons.find((p) => p.id === parseInt(id))
+    const person = persons.find((p) => p.id === id)
     if (window.confirm(`Delete ${person.name}?`)) {
       personService
         .remove(id)
         .then(() => {
           setPersons(
             persons.filter((p) => {
-              return p.id !== parseInt(id)
+              return p.id !== id
             })
           )
           setMessage({
