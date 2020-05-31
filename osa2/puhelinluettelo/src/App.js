@@ -48,7 +48,7 @@ const App = () => {
           })
           .catch((error) => {
             setMessage({
-              text: error.response.data,
+              text: error.response.data.error,
               type: 'error',
             })
             setTimeout(() => {
@@ -74,7 +74,7 @@ const App = () => {
         })
         .catch((error) => {
           setMessage({
-            text: error.response.data,
+            text: error.response.data.error,
             type: 'error',
           })
           setTimeout(() => {
