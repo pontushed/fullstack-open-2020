@@ -2,29 +2,19 @@ const mongoose = require('mongoose')
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
 
-const blogSchema = mongoose.Schema({
-  title: String,
-  author: String,
-  url: String,
-  likes: Number,
-  user: {
+const commentSchema = mongoose.Schema({
+  content: String,
+  blog: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'Blog',
   },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
-    },
-  ],
 })
 
-blogSchema.set('toJSON', {
+commentSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
   },
 })
-
-module.exports = mongoose.model('Blog', blogSchema)
+module.exports = mongoose.model('Comment', commentSchema)

@@ -31,4 +31,9 @@ usersRouter.get('/', async (request, response) => {
   response.json(users.map((u) => u.toJSON()))
 })
 
+usersRouter.get('/:id', async (request, response) => {
+  const user = await User.findById(request.params.id).populate('blogs', '-user')
+  response.json(user.toJSON())
+})
+
 module.exports = usersRouter

@@ -7,6 +7,13 @@ const blogReducer = (state = [], action) => {
       newState.find((a) => a.id === action.data.id).likes++
       return [...newState]
     }
+    case 'COMMENT': {
+      const newState = [...state]
+      newState.find((a) => a.id === action.updatedBlog.id).comments = [
+        ...action.updatedBlog.comments,
+      ]
+      return [...newState]
+    }
     case 'CREATE': {
       const newState = [...state, action.data]
       return [...newState]
@@ -30,6 +37,16 @@ export const addLike = (blog) => {
     dispatch({
       type: 'LIKE',
       data: { id: blog.id },
+    })
+  }
+}
+
+export const addComment = (blog, content) => {
+  return async (dispatch) => {
+    const newComment = await blogService.addComment(blog.id, content)
+    dispatch({
+      type: 'COMMENT',
+      updatedBlog: { ...blog, comments: [...blog.comments, { ...newComment }] },
     })
   }
 }
