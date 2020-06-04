@@ -10,32 +10,40 @@ const LoginForm = ({
 }) => {
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          username
-          <input
-            id='username'
-            type='text'
-            value={username}
-            name='Username'
-            autoComplete='username'
-            onChange={handleUsernameChange}
-          />
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='field'>
+          <label className='label'>Username</label>
+          <div className='control'>
+            <input
+              className='input'
+              id='username'
+              type='text'
+              value={username}
+              name='Username'
+              autoComplete='username'
+              onChange={handleUsernameChange}
+            />
+          </div>
         </div>
-        <div>
-          password
-          <input
-            id='password'
-            type='password'
-            value={password}
-            name='Password'
-            autoComplete='current-password'
-            onChange={handlePasswordChange}
-          />
+        <div className='field'>
+          <label className='label'>Password</label>
+          <div className='control'>
+            <input
+              className='input'
+              id='password'
+              type='password'
+              value={password}
+              name='Password'
+              autoComplete='current-password'
+              onChange={handlePasswordChange}
+            />
+          </div>
         </div>
-        <button id='login-button' type='submit'>
-          Login
-        </button>
+        <div className='control'>
+          <button className='button is-small' id='login-button' type='submit'>
+            Login
+          </button>
+        </div>
       </form>
     </>
   )
