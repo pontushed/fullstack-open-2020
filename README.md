@@ -29,3 +29,15 @@ https://github.com/pontushed/fullstack-open-2020-part5
 ### Part 6 available here:
 
 https://github.com/pontushed/fullstack-open-2020/tree/master/osa6
+
+### Part 7 available here:
+
+https://github.com/pontushed/fullstack-open-2020/tree/master/osa7
+
+### Part 8 available here:
+
+https://github.com/pontushed/fullstack-open-2020/tree/master/osa8
+
+### Part 9 available here:
+
+https://github.com/pontushed/fullstack-open-2020/tree/master/osa9
