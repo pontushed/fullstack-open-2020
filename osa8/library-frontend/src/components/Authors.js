@@ -75,7 +75,7 @@ const Authors = (props) => {
           ))}
         </tbody>
       </table>
-      <SetBorn authors={props.authors} />
+      {props.token ? <SetBorn authors={props.authors} /> : null}
     </div>
   )
 }
